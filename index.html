@@ -288,8 +288,14 @@
                 font-size: 3rem;
             }
 
-            #home .typewriter {
-                font-size: 1.4rem;
+            .hide-for-respon{
+                display: none;
+            }
+
+            #home .typewriter{
+                font-size: 10px;
+                margin: 0;
+                padding: 0 20px;
             }
 
             h2 {
@@ -312,17 +318,17 @@
         <nav>
             <h1>Rakib Sarker</h1>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a class="hide-for-respon" href="#home">Home</a></li>
+                <li><a class="hide-for-respon" href="#about">About</a></li>
+                <li><a class="hide-for-respon" href="#projects">Projects</a></li>
+                <li><a class="hide-for-respon" href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <section id="home">
         <h1>Hello, I'm Rakib Sarker</h1>
-        <p class="typewriter">I specialize in Front-end Developer. With 1 years of experience🧑‍💻.. </p>
+        <p class="typewriter">Transforming ideas into seamless, scalable website interfaces🧑‍💻..</p>
         <a href="#contact" class="btn">Let's Create Magic</a>
     </section>
 
@@ -378,7 +384,6 @@
         gsap.from('#home h1', { duration: 1.5, y: 50, opacity: 0, ease: 'power3.out' });
         gsap.from('#home .typewriter', { duration: 1.5, delay: 0.5, y: 50, opacity: 0, ease: 'power3.out' });
         gsap.from('#home .btn', { duration: 1.5, delay: 1, y: 50, opacity: 0, ease: 'power3.out' });
-
         gsap.utils.toArray('.project-card').forEach(card => {
             gsap.from(card, {
                 scrollTrigger: {
