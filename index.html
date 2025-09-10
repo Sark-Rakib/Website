@@ -8,6 +8,106 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Quicksand:wght@300;400;700&display=swap');
 
+
+        #navbar {
+    position: fixed;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; 
+    height: 50px;
+    background: #010d0e;
+    border-radius: 20px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: top 0.7s ease, width 0.8s ease, opacity 0.7s ease;
+  }
+
+  /* Slide down */
+  #navbar.visible {
+    top: 20px;
+    opacity: 1;
+  }
+
+  /* Expand width */
+  #navbar.expanded {
+    width: 80%;
+    border-radius: 12px;
+  }
+
+  #navbar h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f0c05a;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 5px #f0c05a, 0 0 10px #f0c05a; }
+    to { text-shadow: 0 0 10px #f0c05a, 0 0 20px #f0c05a; }
+  }
+
+  #menu {
+    display: flex;
+    gap: 2rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  /* Menu fade in after expand */
+  #navbar.expanded #menu {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    position: relative;
+  }
+
+  #menu li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #f0c05a;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease;
+  }
+
+  #menu li a:hover::after {
+    width: 100%;
+  }
+
+  #menu li a:hover {
+    color: #f0c05a;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .hamburger div {
+    width: 25px;
+    height: 3px;
+    background: #f0c05a;
+    border-radius: 2px;
+  }
+
+
         * {
             margin: 0;
             padding: 0;
@@ -30,21 +130,7 @@
             padding: 1.5rem 0;
         }
 
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
 
-        nav h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            color: #f0c05a;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
 
         @keyframes glow {
             from { text-shadow: 0 0 5px #f0c05a, 0 0 10px #f0c05a; }
@@ -77,9 +163,7 @@
             transition: width 0.3s ease;
         }
 
-        nav a:hover::after {
-            width: 100%;
-        }
+       
 
         nav a:hover {
             color: #f0c05a;
@@ -324,24 +408,25 @@
             gap: 2rem;
          }
 
-    nav ul {
-    display: none;
-    flex-direction: column;
-    gap: 1rem;
-    background: rgba(28, 37, 38, 0.95);
-    position: absolute;
-    top: 70px; /* adjust to header height */
-    right: 20px;
-    padding: 1.5rem;
-    border-radius: 10px;
-  }
+     #menu {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      background: rgba(28, 37, 38, 0.95);
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+    }
 
-  nav ul.show {
-    display: flex;
-  }
+    #menu.show {
+      display: flex;
+    }
 
-  .hamburger {
-    display: flex;
+    .hamburger {
+      display: flex;
+    }
   }
 
             #home .typewriter{
@@ -361,15 +446,14 @@
             nav h1 {
                 font-size: 1.8rem;
             }
-        }
     </style>
 </head>
 <body>
     <div id="particles-js"></div>
     <header>
-  <nav>
+  <nav id="navbar">
     <h1>Rakib Sarker</h1>
-    
+
     <!-- Hamburger button (mobile) -->
     <div class="hamburger" id="hamburger">
       <div></div>
@@ -379,10 +463,10 @@
 
     <!-- Menu items -->
     <ul id="menu">
-      <li><a class="hide-for-respon" href="#home">Home</a></li>
-      <li><a class="hide-for-respon" href="#about">About</a></li>
-      <li><a class="hide-for-respon" href="#projects">Projects</a></li>
-      <li><a class="hide-for-respon" href="#contact">Contact</a></li>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 </header>
@@ -492,11 +576,23 @@
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-    const hamburger = document.getElementById("hamburger");
-    const menu = document.querySelector("nav ul");
+    const navbar = document.getElementById('navbar');
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('menu');
 
-    hamburger.addEventListener("click", () => {
-    menu.classList.toggle("show"); // "show" class diye tumi nijer CSS e display:block ba flex korbe
+  // Slide down + width expand + menu fade-in
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      navbar.classList.add('visible'); // slide down
+      setTimeout(() => {
+        navbar.classList.add('expanded'); // expand width & fade menu
+      }, 700);
+    }, 300);
+  });
+
+  // Mobile menu toggle
+  hamburger.addEventListener('click', () => {
+    menu.classList.toggle('show');
   });
 
         // GSAP Animations
