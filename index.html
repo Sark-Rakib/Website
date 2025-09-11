@@ -582,13 +582,11 @@
 
   // Slide down + width expand + menu fade-in
   window.addEventListener('load', () => {
-    setTimeout(() => {
-      navbar.classList.add('visible'); // slide down
-      setTimeout(() => {
-        navbar.classList.add('expanded'); // expand width & fade menu
-      }, 700);
-    }, 300);
-  });
+  navbar.classList.add('visible');
+  setTimeout(() => {
+    navbar.classList.add('expanded');
+  }, 700);
+});
 
   // Mobile menu toggle
   hamburger.addEventListener('click', () => {
